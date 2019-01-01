@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="consoleAppender"	class="ch.qos.logback.core.ConsoleAppender">
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">		
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c{1}:%L - %m%n	</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>c:\LogExample\logexample2.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c{1}:%L - %m%n	</Pattern>
+		</encoder>
+	
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10KB</MaxFileSize>
+		</triggeringPolicy>
+	
+		<rollingPolicy 	class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>C:\LogExample\logexample2.%i.log.zip
+			</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>10</MaxIndex>
+		</rollingPolicy>
+	</appender>	
+	
+	<logger name="com.springmvc.interceptor.MonitoringInterceptor" level="info" additivity="false">
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>	
+	
+	<root level="warn">
+		<appender-ref ref="fileAppender" />
+	</root>
+	
+</configuration>
+
+
+
+
