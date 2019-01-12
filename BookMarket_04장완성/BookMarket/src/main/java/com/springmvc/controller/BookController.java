@@ -22,9 +22,5 @@ public class BookController {
 		List<Book> list = bookService.getAllBookList();
 		model.addAttribute("bookList", list);
 		return "books";
-	}
-	
-	
-	
-	
+	}	
 }
